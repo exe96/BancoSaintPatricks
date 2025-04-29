@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Transacción - Banco Saint Patrick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #0A4B4F;
+            --color-secondary: #F2C94C;
+            --color-white: #FFFFFF;
+            --color-gray-light: #F3F4F6;
+            --color-gray-dark: #4B5563;
+            --color-black: #1F2937;
+            --color-success: #10B981;
+            --color-error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-gray-light);
+            color: var(--color-black);
+        }
+
+        .header {
+            background-color: var(--color-primary);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-white);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            border: 2px solid var(--color-secondary);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo::after {
+            content: "♣";
+            color: var(--color-secondary);
+            font-size: 20px;
+        }
+
+        .bank-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .user-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-name {
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            background-color: transparent;
+            color: var(--color-white);
+            border: 1px solid var(--color-white);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: var(--color-white);
+            color: var(--color-primary);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page-title {
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .card {
+            background-color: var(--color-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--color-gray-dark);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--color-gray-dark);
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(10, 75, 79, 0.2);
+        }
+
+        .form-input.error {
+            border-color: var(--color-error);
+        }
+
+        .error-message {
+            color: var(--color-error);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .error-message.visible {
+            display: block;
+        }
+
+        .saldo-container {
+            background-color: var(--color-gray-light);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .saldo-label {
+            font-weight: bold;
+            color: var(--color-gray-dark);
+        }
+
+        .saldo-amount {
+            font-weight: bold;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+        }
+
+        .action-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+        }
+
+        .primary-btn:hover {
+            background-color: #0c5c61;
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+        }
+
+        .secondary-btn:hover {
+            background-color: rgba(10, 75, 79, 0.1);
+        }
+
+        .cancel-btn {
+            background-color: var(--color-gray-light);
+            color: var(--color-gray-dark);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+        }
+
+        .cancel-btn:hover {
+            background-color: var(--color-gray-dark);
+            color: var(--color-white);
+        }
+
+        .inactivity-timer {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--color-white);
+            border: 3px solid var(--color-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .inactivity-timer.warning {
+            border-color: var(--color-error);
+            color: var(--color-error);
+        }
+
+        @media (max-width: 600px) {
+            .action-container {
+                flex-direction: column;
+            }
+            .primary-btn, .secondary-btn, .cancel-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo"></div>
+            <div class="bank-name">Saint Patrick Banking</div>
+        </div>
+        <div class="user-container">
+            <div class="user-name">Juan Pérez</div>
+            <button class="logout-btn">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Realizar Transferencia</h1>
+
+        <div class="card">
+            <form id="transferForm">
+                <div class="form-group">
+                    <label for="cardNumber" class="form-label">Número de Tarjeta Destino</label>
+                    <input type="text" id="cardNumber" class="form-input" placeholder="XXXX-XXXX-XXXX-XXXX" maxlength="19">
+                    <div id="cardNumberError" class="error-message">Por favor, ingrese un número de tarjeta válido.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount" class="form-label">Monto a Transferir</label>
+                    <input type="text" id="amount" class="form-input" placeholder="$ 0.00">
+                    <div id="amountError" class="error-message">Por favor, ingrese un monto válido.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="concept" class="form-label">Concepto / Mensaje (Opcional)</label>
+                    <input type="text" id="concept" class="form-input" placeholder="Ej: Pago de alquiler">
+                </div>
+
+                <div class="saldo-container">
+                    <div class="saldo-label">Saldo Disponible:</div>
+                    <div class="saldo-amount">$12,500.00</div>
+                </div>
+
+                <div class="action-container">
+                    <button type="button" id="continueBtn" class="primary-btn">Continuar</button>
+                    <button type="button" id="cancelBtn" class="cancel-btn">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="inactivity-timer" id="inactivityTimer">60</div>
+
+    <script>
+        // Formato del número de tarjeta
+        const cardNumberInput = document.getElementById('cardNumber');
+        cardNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                value = value.match(new RegExp('.{1,4}', 'g')).join('-');
+            }
+            e.target.value = value;
+        });
+
+        // Formato del monto
+        const amountInput = document.getElementById('amount');
+        amountInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^\d.]/g, '');
+            if (value) {
+                value = '$ ' + parseFloat(value).toLocaleString('es-ES', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            } else {
+                value = '$ 0.00';
+            }
+            e.target.value = value;
+        });
+
+        // Validación del formulario
+        const continueBtn = document.getElementById('continueBtn');
+        const cardNumberError = document.getElementById('cardNumberError');
+        const amountError = document.getElementById('amountError');
+
+        continueBtn.addEventListener('click', function() {
+            let isValid = true;
+            
+            // Validar número de tarjeta
+            const cardNumber = cardNumberInput.value.replace(/\D/g, '');
+            if (cardNumber.length !== 16) {
+                cardNumberInput.classList.add('error');
+                cardNumberError.classList.add('visible');
+                isValid = false;
+            } else {
+                cardNumberInput.classList.remove('error');
+                cardNumberError.classList.remove('visible');
+            }
+            
+            // Validar monto
+            const amount = parseFloat(amountInput.value.replace(/[^\d.]/g, ''));
+            const saldoDisponible = 12500; // Este valor vendría de la base de datos
+            
+            if (isNaN(amount) || amount <= 0 || amount > saldoDisponible) {
+                amountInput.classList.add('error');
+                amountError.classList.add('visible');
+                amountError.textContent = amount > saldoDisponible 
+                    ? 'El monto excede su saldo disponible.' 
+                    : 'Por favor, ingrese un monto válido.';
+                isValid = false;
+            } else {
+                amountInput.classList.remove('error');
+                amountError.classList.remove('visible');
+            }
+            
+            if (isValid) {
+                // Aquí iría el código para enviar a la página de confirmación
+                alert('Formulario válido. Redirigiendo a confirmación...');
+                // window.location.href = 'confirmacion-transaccion.html';
+            }
+        });
+
+        // Botón cancelar
+        const cancelBtn = document.getElementById('cancelBtn');
+        cancelBtn.addEventListener('click', function() {
+            // Redirigir al dashboard
+            if (confirm('¿Está seguro que desea cancelar esta transacción?')) {
+                // window.location.href = 'dashboard.html';
+                alert('Redirigiendo al dashboard...');
+            }
+        });
+
+        // Simulación del contador de inactividad
+        let timeLeft = 60;
+        const timerElement = document.getElementById('inactivityTimer');
+        
+        const countdownInterval = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            
+            if (timeLeft <= 5) {
+                timerElement.classList.add('warning');
+            }
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                alert('Su sesión se cerrará por inactividad');
+                // Aquí iría el código para redireccionar a la página de sesión cerrada
+            }
+        }, 1000);
+        
+        // Resetear el contador cuando hay actividad
+        document.addEventListener('click', resetTimer);
+        document.addEventListener('keypress', resetTimer);
+        
+        function resetTimer() {
+            timeLeft = 60;
+            timerElement.textContent = timeLeft;
+            timerElement.classList.remove('warning');
+        }
+    </script>
+</body>
+</html>

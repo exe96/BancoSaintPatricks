@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión Cerrada - Banco Saint Patrick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A4B4F;
+            --secondary-color: #F2C94C;
+            --white: #FFFFFF;
+            --light-gray: #F3F4F6;
+            --dark-gray: #4B5563;
+            --black: #1F2937;
+            --success-green: #10B981;
+            --error-red: #EF4444;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-gray);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .session-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 480px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-shield {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            border: 3px solid var(--secondary-color);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .logo-clover {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            color: var(--secondary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            padding: 0.75rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #0d5e63;
+        }
+
+        .security-note {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+            max-width: 80%;
+            margin: 0 auto;
+        }
+
+        .inactivity-message {
+            color: var(--error-red);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        @media (min-width: 768px) {
+            .session-card {
+                max-width: 560px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .session-card {
+                max-width: 640px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="session-card">
+        <div class="logo">
+            <div class="logo-shield">
+                <svg class="logo-clover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L15 5C15 5 16 5 16 4C16 3 17 2 18 2C19 2 20 3 20 4C20 5 19 6 18 6C17 6 17 7 17 7L20 10L22 8V12L19 15C19 15 19 16 20 16C21 16 22 17 22 18C22 19 21 20 20 20C19 20 18 19 18 18C18 17 17 17 17 17L14 20L16 22H12L9 19C9 19 8 19 8 20C8 21 7 22 6 22C5 22 4 21 4 20C4 19 5 18 6 18C7 18 7 17 7 17L4 14L2 16V12L5 9C5 9 5 8 4 8C3 8 2 7 2 6C2 5 3 4 4 4C5 4 6 5 6 6C6 7 7 7 7 7L10 4L8 2H12Z" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
+        
+        <h1>Sesión finalizada correctamente</h1>
+        <p>Por seguridad, su sesión ha sido cerrada</p>
+        
+        <button class="btn-primary">Volver a iniciar sesión</button>
+        
+        <p class="security-note">Para proteger su información, siempre cierre sesión al terminar sus operaciones bancarias.</p>
+        
+        <div class="inactivity-message">
+            Su sesión se cerró por inactividad
+        </div>
+    </div>
+</body>
+</html>

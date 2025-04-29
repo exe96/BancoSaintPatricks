@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Saint Patrick - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A4B4F;
+            --secondary-color: #F2C94C;
+            --white: #FFFFFF;
+            --light-gray: #F3F4F6;
+            --dark-gray: #4B5563;
+            --black: #1F2937;
+            --success-green: #10B981;
+            --error-red: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--black);
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-bar-logo {
+            height: 40px;
+            width: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border: 2px solid var(--secondary-color);
+            margin-right: 15px;
+        }
+
+        .top-bar-logo::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary-color);
+            clip-path: path('M10,0 C15.5,5 15.5,15 10,20 C4.5,15 4.5,5 10,0 Z');
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid var(--white);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .balance-card {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-decoration {
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(242, 201, 76, 0.1);
+            border-radius: 50%;
+        }
+
+        .balance-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .balance-card h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .card-number {
+            font-family: 'Roboto Mono', monospace;
+            margin-bottom: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .balance-amount {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .currency {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+
+        .account-summary {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .account-summary h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: var(--dark-gray);
+        }
+
+        .summary-value {
+            font-weight: bold;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #0c5c60;
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-gray);
+        }
+
+        .inactive-timer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--white);
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--primary-color);
+            z-index: 100;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .balance-card {
+                padding: 20px;
+            }
+
+            .balance-amount {
+                font-size: 30px;
+            }
+
+            .inactive-timer {
+                bottom: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 10px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .container {
+                padding: 30px;
+            }
+            
+            .action-buttons {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .dashboard-grid {
+                display: grid;
+                grid-template-columns: 1fr 350px;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <div class="top-bar-logo"></div>
+            <span>Bienvenido, Juan Pérez</span>
+        </div>
+        <button class="logout-btn" onclick="location.href='login.html'">Cerrar Sesión</button>
+    </div>
+
+    <div class="container">
+        <div class="dashboard-grid">
+            <div class="dashboard-main">
+                <div class="balance-card">
+                    <div class="balance-info">
+                        <h2>Saldo Disponible</h2>
+                        <div class="card-number">Tarjeta **** **** **** 4567</div>
+                        <div class="balance-amount"><span class="currency">$</span>12,453.89</div>
+                    </div>
+                    <div class="card-decoration"></div>
+                </div>
+                
+                <div class="account-summary">
+                    <h3>Resumen de Cuenta</h3>
+                    
+                    <div class="summary-item">
+                        <div class="summary-label">Saldo Actual</div>
+                        <div class="summary-value">$12,453.89</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-label">Última Transacción</div>
+                        <div class="summary-value">- $125.00</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-label">Fecha de Última Actividad</div>
+                        <div class="summary-value">29/04/2025 14:32</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary">Realizar Transacción</button>
+                <button class="btn btn-secondary" onclick="location.href='historial.html'">Ver Historial de Transacciones</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="inactive-timer">120s</div>
+
+    <script>
+        // Temporizador de inactividad (solo visual)
+        let timer = 120;
+        const timerElement = document.querySelector('.inactive-timer');
+        
+        const interval = setInterval(() => {
+            timer--;
+            timerElement.textContent = timer + 's';
+            
+            if (timer <= 5) {
+                timerElement.style.borderColor = 'var(--error-red)';
+                timerElement.style.color = 'var(--error-red)';
+            }
+            
+            if (timer <= 0) {
+                clearInterval(interval);
+                timerElement.textContent = '0s';
+                // En una aplicación real, aquí se redireccionaría al usuario
+            }
+        }, 1000);
+
+        // Reiniciar temporizador con actividad del usuario
+        document.addEventListener('click', function() {
+            timer = 120;
+            timerElement.style.borderColor = 'var(--primary-color)';
+            timerElement.style.color = 'var(--primary-color)';
+            timerElement.textContent = timer + 's';
+        });
+    </script>
+</body>
+</html>

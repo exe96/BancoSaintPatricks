@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Transacciones - Banco Saint Patrick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #0A4B4F;
+            --color-secondary: #F2C94C;
+            --color-white: #FFFFFF;
+            --color-gray-light: #F3F4F6;
+            --color-gray-dark: #4B5563;
+            --color-black: #1F2937;
+            --color-success: #10B981;
+            --color-error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-gray-light);
+            color: var(--color-black);
+        }
+
+        .header {
+            background-color: var(--color-primary);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-white);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            border: 2px solid var(--color-secondary);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo::after {
+            content: "♣";
+            color: var(--color-secondary);
+            font-size: 20px;
+        }
+
+        .bank-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .user-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-name {
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            background-color: transparent;
+            color: var(--color-white);
+            border: 1px solid var(--color-white);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: var(--color-white);
+            color: var(--color-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page-title {
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+            font-size: 1.8rem;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border-color: var(--color-primary);
+        }
+
+        .transaction-list {
+            background-color: var(--color-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .transaction-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            padding: 1rem;
+            border-bottom: 1px solid var(--color-gray-light);
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .transaction-item {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+        }
+
+        .transaction-header {
+            font-weight: bold;
+            background-color: var(--color-gray-light);
+            color: var(--color-gray-dark);
+        }
+
+        .transaction-date {
+            font-size: 0.9rem;
+        }
+
+        .transaction-type {
+            font-weight: bold;
+        }
+
+        .transaction-type.incoming {
+            color: var(--color-success);
+        }
+
+        .transaction-type.outgoing {
+            color: var(--color-error);
+        }
+
+        .transaction-card {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .transaction-amount {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .transaction-amount.incoming {
+            color: var(--color-success);
+        }
+
+        .transaction-amount.outgoing {
+            color: var(--color-error);
+        }
+
+        .action-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .primary-btn:hover {
+            background-color: #0c5c61;
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .secondary-btn:hover {
+            background-color: rgba(10, 75, 79, 0.1);
+        }
+
+        .inactivity-timer {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--color-white);
+            border: 3px solid var(--color-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .inactivity-timer.warning {
+            border-color: var(--color-error);
+            color: var(--color-error);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo"></div>
+            <div class="bank-name">Saint Patrick Banking</div>
+        </div>
+        <div class="user-container">
+            <div class="user-name">Juan Pérez</div>
+            <button class="logout-btn">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Historial de Transacciones del Mes</h1>
+
+        <div class="filter-container">
+            <button class="filter-btn active">Todas</button>
+            <button class="filter-btn">Entrantes</button>
+            <button class="filter-btn">Salientes</button>
+        </div>
+
+        <div class="transaction-list">
+            <div class="transaction-item transaction-header">
+                <div>Fecha y Hora</div>
+                <div>Tipo</div>
+                <div>Tarjeta</div>
+                <div>Monto</div>
+            </div>
+            <div class="transaction-item">
+                <div class="transaction-date">29/04/2025 09:45</div>
+                <div class="transaction-type incoming">Entrada</div>
+                <div class="transaction-card">**** **** **** 5678</div>
+                <div class="transaction-amount incoming">+ $2,500.00</div>
+            </div>
+            <div class="transaction-item">
+                <div class="transaction-date">27/04/2025 14:30</div>
+                <div class="transaction-type outgoing">Salida</div>
+                <div class="transaction-card">**** **** **** 9012</div>
+                <div class="transaction-amount outgoing">- $350.00</div>
+            </div>
+            <div class="transaction-item">
+                <div class="transaction-date">25/04/2025 11:15</div>
+                <div class="transaction-type incoming">Entrada</div>
+                <div class="transaction-card">**** **** **** 3456</div>
+                <div class="transaction-amount incoming">+ $1,200.00</div>
+            </div>
+            <div class="transaction-item">
+                <div class="transaction-date">22/04/2025 16:20</div>
+                <div class="transaction-type outgoing">Salida</div>
+                <div class="transaction-card">**** **** **** 7890</div>
+                <div class="transaction-amount outgoing">- $780.50</div>
+            </div>
+            <div class="transaction-item">
+                <div class="transaction-date">20/04/2025 08:10</div>
+                <div class="transaction-type incoming">Entrada</div>
+                <div class="transaction-card">**** **** **** 1234</div>
+                <div class="transaction-amount incoming">+ $3,000.00</div>
+            </div>
+            <div class="transaction-item">
+                <div class="transaction-date">18/04/2025 17:45</div>
+                <div class="transaction-type outgoing">Salida</div>
+                <div class="transaction-card">**** **** **** 5678</div>
+                <div class="transaction-amount outgoing">- $1,250.75</div>
+            </div>
+            <div class="transaction-item">
+                <div class="transaction-date">15/04/2025 13:30</div>
+                <div class="transaction-type incoming">Entrada</div>
+                <div class="transaction-card">**** **** **** 9012</div>
+                <div class="transaction-amount incoming">+ $4,500.00</div>
+            </div>
+        </div>
+
+        <div class="action-container">
+            <button class="primary-btn">Realizar nueva transacción</button>
+            <button class="secondary-btn">Volver al dashboard</button>
+        </div>
+    </div>
+
+    <div class="inactivity-timer" id="inactivityTimer">60</div>
+
+    <script>
+        // Simulación del contador de inactividad
+        let timeLeft = 60;
+        const timerElement = document.getElementById('inactivityTimer');
+        
+        const countdownInterval = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            
+            if (timeLeft <= 5) {
+                timerElement.classList.add('warning');
+            }
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                alert('Su sesión se cerrará por inactividad');
+                // Aquí iría el código para redireccionar a la página de sesión cerrada
+            }
+        }, 1000);
+        
+        // Resetear el contador cuando hay actividad
+        document.addEventListener('click', resetTimer);
+        document.addEventListener('keypress', resetTimer);
+        
+        function resetTimer() {
+            timeLeft = 60;
+            timerElement.textContent = timeLeft;
+            timerElement.classList.remove('warning');
+        }
+        
+        // Funcionalidad para los botones de filtro
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Quitar la clase active de todos los botones
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Añadir la clase active al botón clickeado
+                button.classList.add('active');
+                
+                // Aquí iría la lógica para filtrar las transacciones
+            });
+        });
+    </script>
+</body>
+</html>

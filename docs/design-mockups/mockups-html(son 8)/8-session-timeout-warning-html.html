@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviso de Finalización de Sesión - Banco Saint Patrick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A4B4F;
+            --secondary-color: #F2C94C;
+            --white: #FFFFFF;
+            --light-gray: #F3F4F6;
+            --dark-gray: #4B5563;
+            --black: #1F2937;
+            --success-green: #10B981;
+            --error-red: #EF4444;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .timeout-modal {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 420px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .warning-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            color: var(--error-red);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .timer {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 6px solid var(--light-gray);
+            position: relative;
+        }
+
+        .timer-progress {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 6px solid var(--error-red);
+            border-left-color: transparent;
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            animation: rotate 60s linear forwards;
+            transform-origin: center;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .timer-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--error-red);
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            padding: 0.75rem 1.25rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex: 1;
+            max-width: 160px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0d5e63;
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 6px;
+            padding: 0.75rem 1.25rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            flex: 1;
+            max-width: 160px;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-gray);
+        }
+
+        .security-note {
+            font-size: 0.75rem;
+            color: var(--dark-gray);
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .timeout-modal {
+                max-width: 480px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timeout-modal">
+        <svg class="warning-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 8V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 16H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        
+        <h2>Su sesión está por finalizar</h2>
+        <p>Por motivos de seguridad, su sesión finalizará automáticamente en breve. ¿Desea ampliar el tiempo de sesión?</p>
+        
+        <div class="timer-container">
+            <div class="timer">
+                <div class="timer-progress"></div>
+                <div class="timer-text">59</div>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <button class="btn-primary">Ampliar sesión</button>
+            <button class="btn-secondary">Finalizar ahora</button>
+        </div>
+        
+        <p class="security-note">Para proteger sus datos, es recomendable cerrar sesión si no está utilizando el servicio.</p>
+    </div>
+
+    <script>
+        // Contador para la animación
+        let timeLeft = 60;
+        const timerElement = document.querySelector('.timer-text');
+        
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            
+            if (timeLeft <= 10) {
+                timerElement.style.color = '#EF4444';
+            }
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                // Aquí iría el código para cerrar sesión
+            }
+        }, 1000);
+        
+        // Botones
+        document.querySelector('.btn-primary').addEventListener('click', () => {
+            // Código para ampliar la sesión
+            clearInterval(countdown);
+            document.body.style.display = 'none';
+        });
+        
+        document.querySelector('.btn-secondary').addEventListener('click', () => {
+            // Código para finalizar sesión inmediatamente
+            window.location.href = 'sesion-cerrada.html';
+        });
+    </script>
+</body>
+</html>

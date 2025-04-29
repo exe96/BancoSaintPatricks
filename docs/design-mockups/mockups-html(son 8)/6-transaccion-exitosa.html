@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transacción Exitosa - Banco Saint Patrick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A4B4F;
+            --secondary-color: #F2C94C;
+            --white: #FFFFFF;
+            --light-gray: #F3F4F6;
+            --dark-gray: #4B5563;
+            --black: #1F2937;
+            --success-green: #10B981;
+            --error-red: #EF4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--black);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .main-content {
+            flex: 1;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .success-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--success-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-size: 2.5rem;
+        }
+        
+        .success-title {
+            color: var(--success-green);
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        
+        .transaction-summary {
+            width: 100%;
+            margin-bottom: 2rem;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--white);
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-label {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        
+        .item-value {
+            font-weight: bold;
+            font-family: 'Roboto Mono', monospace;
+            text-align: right;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: #0c5c61;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(10, 75, 79, 0.1);
+        }
+        
+        .inactivity-timer {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--light-gray);
+        }
+        
+        @media (min-width: 768px) {
+            .button-group {
+                flex-direction: row;
+                gap: 1rem;
+            }
+            
+            .btn {
+                flex: 1;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .success-card {
+                padding: 1.5rem;
+            }
+            
+            .success-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            
+            .success-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="main-content">
+        <div class="success-card">
+            <div class="success-icon">✓</div>
+            <h1 class="success-title">¡Transferencia Exitosa!</h1>
+            
+            <div class="transaction-summary">
+                <div class="summary-item">
+                    <span class="item-label">Número de referencia:</span>
+                    <span class="item-value">SP-2025042912345</span>
+                </div>
+                <div class="summary-item">
+                    <span class="item-label">Tarjeta destino:</span>
+                    <span class="item-value">**** **** **** 1234</span>
+                </div>
+                <div class="summary-item">
+                    <span class="item-label">Monto transferido:</span>
+                    <span class="item-value">$1,500.00</span>
+                </div>
+                <div class="summary-item">
+                    <span class="item-label">Fecha y hora:</span>
+                    <span class="item-value">29/04/2025 15:42:18</span>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-primary">Realizar otra transferencia</button>
+                <button class="btn btn-secondary">Volver al inicio</button>
+            </div>
+        </div>
+    </main>
+    
+    <div class="inactivity-timer">
+        120
+    </div>
+</body>
+</html>

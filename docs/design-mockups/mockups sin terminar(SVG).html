@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <svg viewBox="0 0 1200 4800" xmlns="http://www.w3.org/2000/svg">
+        <!-- Estilos generales -->
+        <style>
+          .bg-light { fill: #F3F4F6; }
+          .bg-white { fill: #FFFFFF; }
+          .bg-primary { fill: #0A4B4F; }
+          .bg-secondary { fill: #F2C94C; }
+          .bg-success { fill: #10B981; }
+          .bg-error { fill: #EF4444; }
+          .bg-gray { fill: #E5E7EB; }
+          .text-primary { fill: #0A4B4F; }
+          .text-secondary { fill: #F2C94C; }
+          .text-white { fill: #FFFFFF; }
+          .text-dark { fill: #1F2937; }
+          .text-gray { fill: #4B5563; }
+          .border-gray { stroke: #D1D5DB; }
+          .border-primary { stroke: #0A4B4F; }
+          .font-bold { font-weight: 700; }
+          .font-normal { font-weight: 400; }
+          .font-mono { font-family: 'Courier New', monospace; }
+          .font-sans { font-family: Arial, sans-serif; }
+          .page-title { font-size: 24px; font-weight: 700; }
+          .section-title { font-size: 18px; font-weight: 700; }
+          .card { filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1)); }
+        </style>
+      
+        <!-- Background -->
+        <rect width="1200" height="4800" fill="#F9FAFB" />
+        
+        <!-- Página 1: Login -->
+        <g transform="translate(100, 50)">
+          <!-- Título de la sección -->
+          <text x="0" y="20" class="text-dark font-sans page-title">1. Página de Login</text>
+          
+          <!-- Tarjeta de login -->
+          <g transform="translate(0, 40)">
+            <rect width="400" height="500" rx="8" class="bg-white card" />
+            
+            <!-- Logo -->
+            <g transform="translate(150, 60)">
+              <rect width="100" height="120" rx="8" class="bg-primary" />
+              <path d="M30,30 L70,30 C70,30 75,60 50,80 C25,60 30,30 30,30 Z" class="bg-secondary" />
+              <path d="M30,90 L70,90 C70,90 75,60 50,40 C25,60 30,90 30,90 Z" class="bg-secondary" />
+              <text x="50" y="55" text-anchor="middle" class="text-white font-bold" font-size="30">S</text>
+              <text x="50" y="85" text-anchor="middle" class="text-white font-bold" font-size="30">P</text>
+            </g>
+            
+            <!-- Título -->
+            <text x="200" y="220" text-anchor="middle" class="text-dark font-sans font-bold" font-size="18">Bienvenido a</text>
+            <text x="200" y="245" text-anchor="middle" class="text-primary font-sans font-bold" font-size="20">Saint Patrick Banking</text>
+            
+            <!-- Formulario -->
+            <g transform="translate(50, 280)">
+              <text x="0" y="0" class="text-gray font-sans" font-size="14">Número de Tarjeta</text>
+              <rect x="0" y="10" width="300" height="40" rx="6" fill="none" class="border-gray" stroke-width="1" />
+              <text x="15" y="35" class="text-gray font-mono" font-size="14">XXXX-XXXX-XXXX-XXXX</text>
+              
+              <text x="0" y="80" class="text-gray font-sans" font-size="14">PIN</text>
+              <rect x="0" y="90" width="300" height="40" rx="6" fill="none" class="border-gray" stroke-width="1" />
+              <text x="15" y="115" class="text-gray font-mono" font-size="14">****</text>
+              <rect x="260" y="100" width="20" height="20" fill="none" stroke="#4B5563" stroke-width="1" />
+              <path d="M264,110 L276,110 M270,104 L270,116" stroke="#4B5563" stroke-width="1" />
+              
+              <rect x="0" y="150" width="300" height="50" rx="6" class="bg-primary" />
+              <text x="150" y="180" text-anchor="middle" class="text-white font-sans font-bold" font-size="16">Ingresar</text>
+              
+              <text x="150" y="230" text-anchor="middle" class="text-gray font-sans" font-size="12">Tu sesión se cerrará después de 15 segundos de inactividad</text>
+            </g>
+          </g>
+        </g>
+        
+        <!-- Página 2: Ver Saldo (Dashboard) -->
+        <g transform="translate(600, 50)">
+          <!-- Título de la sección -->
+          <text x="0" y="20" class="text-dark font-sans page-title">2. Página de Saldo (Dashboard)</text>
+          
+          <!-- Header -->
+          <g transform="translate(0, 40)">
+            <rect width="500" height="60" rx="0" class="bg-primary" />
+            <g transform="translate(20, 30)">
+              <rect width="35" height="40" rx="4" fill="#F2C94C" />
+              <text x="17.5" y="25" text-anchor="middle" class="text-primary font-bold" font-size="20">SP</text>
+            </g>
+            <text x="70" y="40" class="text-white font-sans" font-size="16">Saint Patrick Bank</text>
+            <text x="400" y="40" class="text-white font-sans" font-size="14">Cerrar Sesión</text>
+          </g>
+          
+          <!-- Contenido principal -->
+          <g transform="translate(0, 120)">
+            <!-- Tarjeta de saldo -->
+            <rect width="500" height="200" rx="8" class="bg-white card" />
+            <text x="30" y="40" class="text-gray font-sans" font-size="14">Saldo Disponible</text>
+            <text x="30" y="100" class="text-dark font-sans font-bold" font-size="48">$40,555.00</text>
+            <text x="30" y="140" class="text-gray font-sans" font-size="14">Tarjeta terminada en 5565</text>
+            <rect x="350" y="30" width="120" height="40" rx="20" class="bg-secondary" />
+            <text x="410" y="55" text-anchor="middle" class="text-primary font-sans font-bold" font-size="14">Platinum</text>
+            
+            <!-- Botones de acción -->
+            <g transform="translate(0, 220)">
+              <rect width="500" height="80" rx="8" class="bg-white card" />
+              <text x="30" y="45" class="text-dark font-sans font-bold" font-size="16">Acciones Rápidas</text>
+              
+              <rect x="250" y="25" width="220" height="40" rx="20" class="bg-primary" />
+              <text x="360" y="50" text-anchor="middle" class="text-white font-sans font-bold" font-size="14">Realizar Transacción</text>
+            </g>
+            
+            <!-- Últimas transacciones -->
+            <g transform="translate(0, 320)">
+              <rect width="500" height="220" rx="8" class="bg-white card" />
+              <text x="30" y="40" class="text-dark font-sans font-bold" font-size="16">Últimas Transacciones</text>
+              <text x="400" y="40" class="text-primary font-sans" font-size="14">Ver todas</text>
+              
+              <!-- Transacción 1 -->
+              <line x1="30" y1="60" x2="470" y2="60" stroke="#E5E7EB" stroke-width="1" />
+              <text x="30" y="85" class="text-dark font-sans" font-size="14">Transferencia recibida</text>
+              <text x="30" y="105" class="text-gray font-sans" font-size="12">13 Abril 2025 • Tarjeta ***7125</text>
+              <text x="450" y="95" text-anchor="end" class="text-success font-sans font-bold" font-size="16">+$1,200.00</text>
+              
+              <!-- Transacción 2 -->
+              <line x1="30" y1="130" x2="470" y2="130" stroke="#E5E7EB" stroke-width="1" />
+              <text x="30" y="155" class="text-dark font-sans" font-size="14">Transferencia enviada</text>
+              <text x="30" y="175" class="text-gray font-sans" font-size="12">10 Abril 2025 • Tarjeta ***1578</text>
+              <text x="450" y="165" text-anchor="end" class="text-error font-sans font-bold" font-size="16">-$450.00</text>
+            </g>
+            
+            <!-- Indicador de tiempo -->
+            <g transform="translate(440, 560)">
+              <circle cx="25" cy="25" r="25" fill="#E5E7EB" />
+              <text x="25" y="30" text-anchor="middle" class="text-dark font-sans font-bold" font-size="14">15</text>
+            </g>
+          </g>
+        </g>
+        
+        <!-- Página 3: Historial de Transacciones -->
+        <g transform="translate(100, 750)">
+          <!-- Título de la sección -->
+          <text x="0" y="20" class="text-dark font-sans page-title">3. Historial de Transacciones</text>
+          
+          <!-- Header -->
+          <g transform="translate(0, 40)">
+            <rect width="500" height="60" rx="0" class="bg-primary" />
+            <g transform="translate(20, 30)">
+              <rect width="35" height="40" rx="4" fill="#F2C94C" />
+              <text x="17.5" y="25" text-anchor="middle" class="text-primary font-bold" font-size="20">SP</text>
+            </g>
+            <text x="70" y="40" class="text-white font-sans" font-size="16">Saint Patrick Bank</text>
+            <text x="400" y="40" class="text-white font-sans" font-size="14">Cerrar Sesión</text>
+          </g>
+          
+          <!-- Título de la página -->
+          <g transform="translate(0, 120)">
+            <text x="0" y="0" class="text-dark font-sans page-title">Historial de Transacciones</text>
+            <text x="0" y="25" class="text-gray font-sans" font-size="14">Últimos 30 días</text>
+          </g>
+          
+          <!-- Filtros -->
+          <g transform="translate(0, 170)">
+            <rect width="150" height="40" rx="20" class="bg-primary" />
+            <text x="75" y="25" text-anchor="middle" class="text-white font-sans" font-size="14">Todas</text>
+            
+            <rect x="160" y="0" width="150" height="40" rx="20" fill="none" class="border-primary" stroke-width="1" />
+            <text x="235" y="25" text-anchor="middle" class="text-primary font-sans" font-size="14">Recibidas</text>
+            
+            <rect x="320" y="0" width="150" height="40" rx="20" fill="none" class="border-primary" stroke-width="1" />
+            <text x="395" y="25" text-anchor="middle" class="text-primary font-sans" font-size="14">Enviadas</text>
+          </g>
+          
+          <!-- Lista de transacciones -->
+          <g transform="translate(0, 230)">
+            <rect width="500" height="400" rx="8" class="bg-white card" />
+            
+            <!-- Encabezado de tabla -->
+            <text x="30" y="30" class="text-gray font-sans" font-size="12">FECHA</text>
+            <text x="150" y="30" class="text-gray font-sans" font-size="12">DESCRIPCIÓN</text>
+            <text x="450" y="30" text-anchor="end" class="text-gray font-sans" font-size="12">MONTO</text>
+            <line x1="30" y1="40" x2="470" y2="40" stroke="#E5E7EB" stroke-width="1" />
+            
+            <!-- Transacción 1 -->
+            <text x="30" y="70" class="text-dark font-sans" font-size="14">13/04/2025</text>
+            <text x="150" y="70" class="text-dark font-sans" font-size="14">Recibido de ***7125</text>
+            <text x="450" y="70" text-anchor="end" class="text-success font-sans font-bold" font-size="14">+$1,200.00</text>
+            <line x1="30" y1="85" x2="470" y2="85" stroke="#E5E7EB" stroke-width="1" />
+            
+            <!-- Transacción 2 -->
+            <text x="30" y="115" class="text-dark font-sans" font-size="14">10/04/2025</text>
+            <text x="150" y="115" class="text-dark font-sans" font-size="14">Enviado a ***1578</text>
+            <text x="450" y="115" text-anchor="end" class="text-error font-sans font-bold" font-size="14">-$450.00</text>
+            <line x1="30" y1="130" x2="470" y2="130" stroke="#E5E7EB" stroke-width="1" />
+            
+            <!-- Transacción 3 -->
+            <text x="30" y="160" class="text-dark font-sans" font-size="14">05/04/2025</text>
+            <text x="150" y="160" class="text-dark font-sans" font-size="14">Enviado a ***1547</text>
+            <text x="450" y="160" text-anchor="end" class="text-error font-sans font-bold" font-size="14">-$750.00</text>
+            <line x1="30" y1="175" x2="470" y2="175" stroke="#E5E7EB" stroke-width="1" />
+            
+            <!-- Transacción 4 -->
+            <text x="30" y="205" class="text-dark font-sans" font-size="14">01/04/2025</text>
+            <text x="150" y="205" class="text-dark font-sans" font-size="14">Recibido de ***1478</text>
+            <text x="450" y="205" text-anchor="end" class="text-success font-sans font-bold" font-size="14">+$2,500.00</text>
+            <line x1="30" y1="220" x2="470" y2="220" stroke="#E5E7EB" stroke-width="1" />
+            
+            <!-- Transacción 5 -->
+            <text x="30" y="250" class="text-dark font-sans" font-size="14">28/03/2025</text>
+            <text x="150" y="250" class="text-dark font-sans" font-size="14">Enviado a ***1578</text>
+            <text x="450" y="250" text-anchor="end" class="text-error font-sans font-bold" font-size="14">-$320.00</text>
+            <line x1="30" y1="265" x2="470" y2="265" stroke="#E5E7EB" stroke-width="1" />
+            
+            <!-- Paginación -->
+            <g transform="translate(200, 340)">
+              <rect width="40" height="40" rx="20" class="bg-primary" />
+              <text x="20" y="25" text-anchor="middle" class="text-white font-sans font-bold" font-size="14">1</text>
+              
+              <rect x="50" y="0" width="40" height="40" rx="20" fill="none" class="border-gray" stroke-width="1" />
+              <text x="70" y="25" text-anchor="middle" class="text-gray font-sans" font-size="14">2</text>
+              
+              <rect x="100" y="0" width="40" height="40" rx="20" fill="none" class="border-gray" stroke-width="1" />
+              <text x="120" y="25" text-anchor="middle" class="text-gray font-sans" font-size="14">3</text>
+            </g>
+          </g>
+          
+          <!-- Botón acción -->
+          <g transform="translate(0, 650)">
+            <rect width="500" height="50" rx="8" class="bg-primary" />
+            <text x="250" y="30" text-anchor="middle" class="text-white font-sans font-bold" font-size="16">Realizar Nueva Transacción</text>
+          </g>
+          
+          <!-- Botón volver -->
+          <g transform="translate(0, 710)">
+            <rect width="500" height="50" rx="8" fill="none" class="border-primary" stroke-width="1" />
+            <text x="250" y="30" text-anchor="middle" class="text-primary font-sans font-bold" font-size="16">Volver al Dashboard</text>
+          </g>
+          
+          <!-- Indicador de tiempo -->
+          <g transform="translate(440, 780)">
+            <circle cx="25" cy="25" r="25" fill="#E5E7EB" />
+            <text x="25" y="30" text-anchor="middle" class="text-dark font-sans font-bold" font-size="14">15</text>
+          </g>
+        </g>
+        
+        <!-- Página 4: Nueva Transacción -->
+        <g transform="translate(650, 750)">
+          <!-- Título de la sección -->
+          <text x="0" y="20" class="text-dark font-sans page-title">4. Nueva Transacción</text>
+          
+          <!-- Header -->
+          <g transform="translate(0, 40)">
+            <rect width="500" height="60" rx="0" class="bg-primary" />
+            <g transform="translate(20, 30)">
+              <rect width="35" height="40" rx="4" fill="#F2C94C" />
+              <text x="17.5" y="25" text-anchor="middle" class="text-primary font-bold" font-size="20">SP</text>
+            </g>
+            <text x="70" y="40" class="text-white font-sans" font-size="16">Saint Patrick Bank</text>
+            <text x="400" y="40" class="text-white font-sans" font-size="14">Cerrar Sesión</text>
+          </g>
+          
+          <!-- Título de la página -->
+          <g transform="translate(0, 120)">
+            <text x="0" y="0" class="text-dark font-sans page-title">Realizar Transferencia</text>
+            <text x="0" y="25" class="text-gray font-sans" font-size="14">Saldo disponible: $40,555.00</text>
+          </g>
+          
+          <!-- Formulario de transferencia -->
+          <g transform="translate(0, 170)">
+            <rect width="500" height="400" rx="8" class="bg-white card" />
+            
+            <!-- Campo tarjeta destino -->
+            <text x="30" y="40" class="text-gray font-sans" font-size="14">Número de Tarjeta Destino</text>
+            <rect x="30" y="50" width="440" height="50" rx="6" fill="none" class="border-gray" stroke-width="1" />
+            <text x="45" y="80" class="text-gray font-mono" font-size="14">XXXX-XXXX-XXXX-XXXX</text>
+            
+            <!-- Campo monto -->
+            <text x="30" y="130" class="text-gray font-sans" font-size="14">Monto a Transferir</text>
+            <rect x="30" y="140" width="440" height="50" rx="6" fill="none" class="border-gray" stroke-width="1" />
+            <text x="45" y="170" class="text-gray font-sans" font-size="14">$</text>
+            <text x="60" y="170" class="text-dark font-sans" font-size="14">0.00</text>
+            
+            <!-- Campo concepto -->
+            <text x="30" y="220" class="text-gray font-sans" font-size="14">Concepto (opcional)</text>
+            <rect x="30" y="230" width="440" height="50" rx="6" fill="none" class="border-gray" stroke-width="1" />
+            <text x="45" y="260" class="text-gray font-sans" font-size="14">Ingrese un concepto...</text>
+            
+            <!-- Aviso -->
+            <rect x="30" y="310" width="440" height="60" rx="6" fill="#FEF3C7" />
+            <text x="250" y="340" text-anchor="middle" class="text-dark font-sans" font-size="14">Verifique la información antes de continuar</text>
+          </g>
+          
+          <!-- Botones de acción -->
+          <g transform="translate(0, 590)">
+            <rect width="500" height="50" rx="8" class="bg-primary" />
+            <text x="250" y="30" text-anchor="middle" class="text-white font-sans font-bold" font-size="16">Continuar</text>
+          </g>
+          
+          <g transform="translate(0, 650)">
+            <rect width="500" height="50" rx="8" fill="none" class="border-primary" stroke-width="1" />
+            <text x="250" y="30" text-anchor="middle" class="text-primary font-sans font-bold" font-size="16">Cancelar</text>
+          </g>
+          
+          <!-- Indicador de tiempo -->
+          <g transform="translate(440, 720)">
+            <circle cx="25" cy="25" r="25" fill="#E5E7EB" />
+            <text x="25" y="30" text-anchor="middle" class="text-dark font-sans font-bold" font-size="14">15</text>
+          </g>
+        </g>
+        
+        <!-- Página 5: Confirmación de Transacción -->
+        <g transform="translate(100, 1650)">
+          <!-- Título de la sección -->
+          <text x="0" y="20" class="text-dark font-sans page-title">5. Confirmación de Transacción</text>
+          
+          <!-- Header -->
+          <g transform="translate(0, 40)">
+            <rect width="500" height="60" rx="0" class="bg-primary" />
+            <g transform="translate(20, 30)">
+              <rect width="35" height="40" rx="4" fill="#F2C94C" />
+              <text x="17.5" y="25" text-anchor="middle" class="text-primary font-bold" font-size="20">SP</text>
+            </g>
+            <text x="70" y="40" class="text-white font-sans" font-size="16">Saint Patrick Bank</text>
+            <text x="400" y="40" class="text-white font-sans" font-size="14">Cerrar Sesión</text>
+          </g>
+          
+          <!-- Título de la página -->
+          <g transform="translate(0, 120)">
+            <text x="0" y="0" class="text-dark font-sans page-title">Confirmar Transferencia</text>
+            <text x="0" y="25" class="text-gray font-sans" font-size="14">Revise los detalles antes de confirmar</text>
+          </g>
+          
+          <!-- Detalles de la transacción -->
+          <g transform="translate(0, 170)">
+            <rect width="500" height="350" rx="8" class="bg-white card" />
+            
+            <!-- Origen -->
+            <text x="30" y="40" class="text-gray font-sans" font-size="14">ORIGEN</text>
+            <text x="30" y="70" class="text-dark font-sans font-bold" font-size="16">Tarjeta terminada en 5565</text>
+            <text x="30" y="90" class="text-gray font-sans" font-size="14">Saldo actual: $40,555.00</text>
+            
+            <line x1="30" y1="110" x2="470" y2="110" stroke="#E5E7EB" stroke-width="1" />
+            
+            <!-- Destino -->
+            <text x="30" y="140" class="text-gray font-sans" font-size="14">DESTINO</text>
+            <text x="30" y="170" class="text-dark font-sans font-bold" font-size="16">Tarjeta terminada en 1578</text>
+            
+            <line x1="30" y1="190" x2="470" y2="190" stroke="#E5E7EB" stroke-width="1" />
+            
+            <!-- Monto -->
+            <text x="30" y="220" class="text-gray font-sans" font-size="14">MONTO</text>
+            <text x="30" y="250" class="text-dark font-sans font-bold" font-size="24">$1,000.00</text>
+            <text x="30" y="275" class="text-gray font-sans" font-size="14">Saldo después de la transferencia: $39,555.00</text>
+            
+            <line x1="30" y1="295" x2="470" y2="295" stroke="#E5E7EB" stroke-width="1" />
+            
+            <!-- Concepto -->
+            <text x="30" y="325" class="text-gray font-sans" font-size="14">CONCEPTO</text>
+            <text x="30" y="355" class="text-dark font-sans" font-size="16">Pago préstamo</text>
+          </g>
+          
+          <!-- Botones de acción -->
+          <g transform="translate(0, 540)">
+            <rect width="500" height="50" rx="8" class="bg-primary" />
+            <text x="250" y="30" text-anchor="middle" class="text-white font-sans font-bold" font-size="16">Confirmar Transferencia</text>
+          </g>
+          
+          <g transform="translate(0, 600)">
+            <rect width="240" height="50" rx="8" fill="none" class="border-primary" stroke-width="1" />
+            <text x="120" y="30" text-anchor="middle" class="text-primary font-sans font-bold" font-size="16">Modificar</text>
+            
+            <rect x="260" y="0" width="240" height="50" rx="8" fill="none" class="border-gray" stroke-width="1" />
+            <text x="380" y="30" text-anchor="middle" class="text-gray font-sans" font-size="16">Cancelar</text>
+          </g>
+          
+          <!-- Indicador de tiempo -->
+          <g transform="translate(440, 670)">
+            <circle cx="25" cy="25" r="25" fill="#E5E7EB" />
+            <text x="25" y="30" text-anchor="middle" class="text-dark font-sans font-bold" font-size="14">15</text>
+          </g>
+        </g>
+        
+        <!-- Página 6: Transacción Exitosa -->
+        <g transform="translate(650, 1650)">
+          <!-- Título de la sección -->
+          <text x="0" y="20" class="text-dark font-sans page-title">6. Transacción Exitosa</text>
+          
+          <!-- Header -->
+          <g transform="translate(0, 40)">
+            <rect width="500" height="60" rx="0" class="bg-primary" />
+            <g transform="translate(20, 30)">
+              <rect width="35" height="40" rx="4" fill="#F2C94C" />
+              <text x="17.5" y="25" text-anchor="middle" class="text-primary font-bold" font-size="20">SP</text>
+            </g>
+            <text x="70" y="40" class="text-white font-sans" font-size="16">Saint Patrick Bank</text>
+            <text x="400" y="40" class="text-white font-sans" font-size="14">Cerrar Sesión</text>
+          </g>
+          
+          <!-- Contenido -->
+          <g transform="translate(0, 120)">
+            <rect width="500" height="450" rx="8" class="bg-white card" />
+            
+            <!-- Ícono de éxito -->
+            <circle cx="250" cy="100" r="60" class="bg-success" />
+            <path d="M220,100 L240,120 L280,80" stroke="white" stroke-width="6" fill="none" />
+            
+            <!-- Mensaje -->
+            <text x="250" y="200" text-anchor="middle" class="text-dark font-sans font-bold" font-size="24">¡Transferencia Exitosa!</text>
+            <text x="250" y="230" text-anchor="middle" class="text-gray font-sans" font-size="16">Tu transferencia ha sido procesada correctamente</text>
+            
+            <!-- Detalles -->
+            <g transform="translate(100, 260)">
+              <text x="0" y="0" class="text-gray font-sans" font-size="14">Número de referencia:</text>
+              <text x="300" y="0" text-anchor="en
+</body>
+</html>

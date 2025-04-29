@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Transacción - Banco Saint Patrick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A4B4F;
+            --secondary-color: #F2C94C;
+            --white: #FFFFFF;
+            --light-gray: #F3F4F6;
+            --dark-gray: #4B5563;
+            --black: #1F2937;
+            --success-green: #10B981;
+            --error-red: #EF4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--black);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .logo-clover {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+        
+        .bank-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .username {
+            margin-right: 1rem;
+        }
+        
+        .logout-btn {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .main-content {
+            flex: 1;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .transaction-summary {
+            margin-bottom: 2rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-label {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+        
+        .item-value {
+            font-weight: bold;
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .balance-info {
+            background-color: var(--light-gray);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+        
+        .balance-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .balance-row:last-child {
+            margin-bottom: 0;
+            font-weight: bold;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: #0c5c61;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(10, 75, 79, 0.1);
+        }
+        
+        .btn-cancel {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+        }
+        
+        .btn-cancel:hover {
+            background-color: #e1e2e4;
+        }
+        
+        .inactivity-timer {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--light-gray);
+        }
+        
+        @media (min-width: 768px) {
+            .button-group {
+                flex-direction: row;
+                gap: 1rem;
+            }
+            
+            .btn {
+                flex: 1;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .header {
+                padding: 0.75rem;
+            }
+            
+            .bank-name {
+                font-size: 1rem;
+            }
+            
+            .username {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo">
+                <span class="logo-clover">☘</span>
+            </div>
+            <div class="bank-name">Saint Patrick Banking</div>
+        </div>
+        <div class="user-actions">
+            <span class="username">Juan Pérez</span>
+            <button class="logout-btn">Cerrar Sesión</button>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <div class="card">
+            <h1 class="page-title">Confirmar Transferencia</h1>
+            
+            <div class="transaction-summary">
+                <div class="summary-item">
+                    <span class="item-label">Tarjeta origen:</span>
+                    <span class="item-value">**** **** **** 5678</span>
+                </div>
+                <div class="summary-item">
+                    <span class="item-label">Tarjeta destino:</span>
+                    <span class="item-value">**** **** **** 1234</span>
+                </div>
+                <div class="summary-item">
+                    <span class="item-label">Monto a transferir:</span>
+                    <span class="item-value">$1,500.00</span>
+                </div>
+                <div class="summary-item">
+                    <span class="item-label">Concepto:</span>
+                    <span class="item-value">Pago de servicios</span>
+                </div>
+            </div>
+            
+            <div class="balance-info">
+                <div class="balance-row">
+                    <span>Saldo actual:</span>
+                    <span>$5,430.75</span>
+                </div>
+                <div class="balance-row">
+                    <span>Saldo después de la transacción:</span>
+                    <span>$3,930.75</span>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-primary">Confirmar transferencia</button>
+                <button class="btn btn-secondary">Modificar</button>
+                <button class="btn btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </main>
+    
+    <div class="inactivity-timer">
+        120
+    </div>
+</body>
+</html>
